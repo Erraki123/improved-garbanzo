@@ -1,0 +1,54 @@
+<div class="admin-container" style="max-width: 900px; margin: 0 auto; padding: 20px;">
+  <h2 class="title">Admin Panel</h2>
+  
+  <div class="add-service-form">
+    <h3>Add New Service</h3>
+    <form (ngSubmit)="addService()">
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Service Title</mat-label>
+        <input matInput [(ngModel)]="newService.title" name="title" required />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Service Description</mat-label>
+        <textarea matInput [(ngModel)]="newService.description" name="description" required></textarea>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit" class="submit-button">Add Service</button>
+    </form>
+  </div>
+
+  <div *ngIf="editService" class="edit-service-form">
+    <h4>Edit Service</h4>
+    <form (ngSubmit)="saveEditedService()">
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Service Title</mat-label>
+        <input matInput [(ngModel)]="editService.title" name="title" required />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Service Description</mat-label>
+        <textarea matInput [(ngModel)]="editService.description" name="description" required></textarea>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit" class="submit-button">Save Changes</button>
+    </form>
+  </div>
+
+  <h3>Existing Services</h3>
+
+  <div *ngFor="let service of services" class="service-card">
+    <mat-card class="service-card-container">
+      <mat-card-title class="service-title">{{ service.title }}</mat-card-title>
+      <mat-card-content class="service-description">{{ service.description }}</mat-card-content>
+      <div class="service-buttons">
+        <button mat-button color="warn" (click)="deleteService(service)" class="delete-button">Delete</button>
+        <button mat-button color="accent" (click)="editServiceDetails(service)" class="edit-button">Edit</button>
+      </div>
+    </mat-card>
+  </div>
+</div>
+
+<style>
+
+</style>
